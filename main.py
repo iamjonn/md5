@@ -46,7 +46,6 @@ def processa_bloco(bloco, h):
     s = [
         [7, 12, 17, 22], [5, 9, 14, 20], [4, 11, 16, 23], [6, 10, 15, 21]
     ]
-
     # Dividindo o bloco em palavras de 32 bits
     m = [struct.unpack('<I', bloco[i:i+4])[0] for i in range(0, 64, 4)]
 
@@ -67,7 +66,7 @@ def processa_bloco(bloco, h):
             f = funcao_i(b, c, d)
             g = (7 * i) % 16
             rot = s[3][i % 4]
-
+#01101010 01101111 01101110 
         temp = d
         d = c
         c = b
@@ -113,8 +112,8 @@ if __name__ == "__main__":
     print("Hashes iguais? (exemplo1)", verificar_com_hashlib(exemplo1))
     print("Hashes iguais? (exemplo2)", verificar_com_hashlib(exemplo2))
 
-    # Teste de modificação de um único bit
-    print("\nAlterando um único bit e verificando a diferença nos hashes:")
+    # Teste de modificação de um único byte
+    print("\nAlterando um único byte e verificando a diferença nos hashes:")
     print("Hash de 'Ola Mundo!':", md5(exemplo1))
     print("Hash de 'Ola Mundo?':", md5(exemplo2))
 
